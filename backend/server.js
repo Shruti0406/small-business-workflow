@@ -46,12 +46,10 @@ app.use((error, _req, res, _next) => {
     error.code === "ECONNREFUSED" ||
     error.errors?.some((cause) => cause.code === "ECONNREFUSED")
   ) {
-    return res
-      .status(503)
-      .json({
-        error:
-          "Database unavailable. Start MySQL and check the backend/.env connection settings.",
-      });
+    return res.status(503).json({
+      error:
+        "Database unavailable. Start MySQL and check the backend/.env connection settings.",
+    });
   }
   console.error(error);
   res.status(500).json({
